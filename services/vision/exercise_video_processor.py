@@ -27,7 +27,7 @@ class VideoProcessorClass(VideoProcessorBase):
                 min_pose_detection_confidence=.7,min_pose_presence_confidence=.7,
                 min_tracking_confidence=.7))
         except Exception as exc:
-            logger.exception('GymSpotter pose model initialization failed')
+            logger.exception('Repzy pose model initialization failed')
             self.error=f'Pose model could not load ({type(exc).__name__}). Check the deployment logs and the model file in ml_models.'
 
     def snapshot(self):
@@ -73,11 +73,11 @@ class VideoProcessorClass(VideoProcessorBase):
                     else:
                         snap=self.engine.missing(now)
                 cv2.rectangle(img,(0,0),(img.shape[1],48),(20,24,23),-1)
-                label=f"GYMSPOTTER  |  {snap['state'].upper()}  |  REPS {snap['reps']}"
+                label=f"REPZY  |  {snap['state'].upper()}  |  REPS {snap['reps']}"
                 cv2.putText(img,label,(16,31),cv2.FONT_HERSHEY_SIMPLEX,.6,(69,122,240),2,cv2.LINE_AA)
             except Exception:
                 if not self.error:
-                    logger.exception('GymSpotter pose frame processing failed')
+                    logger.exception('Repzy pose frame processing failed')
                 self.engine.missing(now,'Tracking interrupted. Stop and restart the camera.')
                 self.error='Pose processing failed. Stop and restart this workout.'
         return av.VideoFrame.from_ndarray(img,format='bgr24')

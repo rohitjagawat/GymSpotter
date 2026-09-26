@@ -12,7 +12,7 @@ class VoicePipeline:
         self.llm = LLMCoach(key, model)
         self.tts = tts or TextToSpeech()
         self.clock = clock
-        self.pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix='gymspotter-voice')
+        self.pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix='repzy-voice')
         self.future = None
         self.pending = None
         self.desired = None
@@ -127,7 +127,7 @@ def voice_controls():
         st.session_state.voice_error = None
         st.session_state.voice_test_event = {
             'id': 'test-' + uuid.uuid4().hex,
-            'cue': 'GymSpotter voice check. I am ready to coach your next set.',
+            'cue': 'Repzy voice check. I am ready to coach your next set.',
             'exercise': '', 'expires': time.monotonic() + 20, 'force': True,
         }
 

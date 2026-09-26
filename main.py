@@ -1,4 +1,4 @@
-"""GymSpotter — run with: python -m streamlit run main.py"""
+"""Repzy — run with: python -m streamlit run main.py"""
 from functools import partial
 import json, uuid
 import pandas as pd
@@ -60,7 +60,7 @@ def overview():
         if st.button('Enter training studio →',type='primary',width="stretch"):
             st.session_state.page='Train'; st.rerun()
     with right:
-        st.subheader('The GymSpotter approach')
+        st.subheader('The Repzy approach')
         ui.coach('One clear cue at a time. Refine the next repetition instead of chasing a perfect score.')
         st.markdown('**01 · Frame your movement**  \nChoose a front or side view with enough room to see the required joints.')
         st.markdown('**02 · Train with control**  \nWatch your range, symmetry and movement tempo.')
@@ -138,7 +138,7 @@ def progress():
     st.caption('An active record is an autosaved session that may have been interrupted. Timestamps use UTC. Scores are experimental and are not comparable across different exercises.')
     export=df[columns].copy()
     st.download_button('Export my history (CSV)',export.to_csv(index=False).encode('utf-8'),
-        file_name='gymspotter-history.csv',mime='text/csv')
+        file_name='repzy-history.csv',mime='text/csv')
     selection=st.selectbox('Review a session',range(len(rows)),
         format_func=lambda i:f"{rows[i]['created_at']} — {rows[i]['exercise']} — {rows[i]['id'][:6]}")
     details=json.loads(rows[selection]['details'])
@@ -169,7 +169,7 @@ def account():
     st.caption('Password-protected accounts use new tables in your existing data.db. Legacy username-only accounts and history remain stored, but are not linked automatically.')
 
 def main():
-    st.set_page_config(page_title='GymSpotter · Your Personal AI Spotter',page_icon='🏋️',layout='wide')
+    st.set_page_config(page_title='Repzy · Your Personal AI Spotter',page_icon='🏋️',layout='wide')
     ui.theme(); init_db()
     if not render_login_wall(): return
     initial_session_defaults()

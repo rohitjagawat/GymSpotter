@@ -14,7 +14,7 @@ class LLMCoach:
                 model=self.model, temperature=.2, max_tokens=80,
                 messages=[
                     {'role':'system','content':
-                     'You are GymSpotter. Rephrase the supplied coaching cue in at most 20 words. '
+                     'You are Repzy. Rephrase the supplied coaching cue in at most 20 words. '
                      'Keep its meaning. Do not add diagnoses, new observations, counts, or '
                      'exercise prescriptions. You receive heuristic text cues, not images.'},
                     {'role':'user','content':f'Exercise: {exercise}. Cue: {cue}'}])

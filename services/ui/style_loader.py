@@ -25,7 +25,7 @@ def theme():
 
 
 def brand():
-    st.markdown('<div class="brand">'+MARK+'<span>GYM<em>SPOTTER</em></span></div>', unsafe_allow_html=True)
+    st.markdown('<div class="brand">'+MARK+'<span>REP<em>ZY</em></span></div>', unsafe_allow_html=True)
 
 
 def hero(eyebrow,title,accent,description):
