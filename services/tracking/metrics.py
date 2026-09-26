@@ -43,7 +43,7 @@ def live_panel(context):
         st.warning('The camera stopped. Save this session and start a new workout to reconnect.'); return
     processor.pause(st.session_state.paused)
     snap=processor.snapshot(); st.session_state.last_snapshot=snap
-    st.caption(f"Pose model: {'ready' if snap.get('model_ready') else 'not loaded'} � Camera frames received: {snap.get('frames_received', 0)}")
+    st.caption(f"Pose model: {'ready' if snap.get('model_ready') else 'not loaded'} · Camera frames received: {snap.get('frames_received', 0)}")
     if snap.get('error'):
         st.error(snap['error'])
         st.session_state.pop('voice_event',None)
@@ -62,7 +62,7 @@ def live_panel(context):
         a.metric('Total reps',snap['reps'])
         b.metric('This set',f"{snap['in_set']} / {plan['amount']}")
     c.metric('Sets complete',f"{snap['sets']} / {plan['sets']}")
-    d.metric('Session form',f"{snap['score']} / 100" if snap['score'] is not None else '—')
+    d.metric('Session form',f"{snap['score']} / 100" if snap['score'] is not None else 'â€”')
     total=plan['sets']*plan['amount']
     st.progress(min(1.,(snap['hold_seconds'] if plan['kind']=='hold' else snap['reps'])/total))
     rep_number=(snap.get('last_rep') or {}).get('rep')
@@ -95,12 +95,12 @@ def live_panel(context):
         st.info(snap['tracking_hint'])
         st.caption('Tracked arm: '+snap.get('tracking_side','waiting').title())
     if snap['metrics']:
-        st.caption('  ·  '.join(f'{key}: {value}°' for key,value in snap['metrics'].items()))
-    st.caption('Tracking: '+('visible joints' if snap['tracked'] else 'waiting')+' · '+snap['state'].title())
+        st.caption('  Â·  '.join(f'{key}: {value}Â°' for key,value in snap['metrics'].items()))
+    st.caption('Tracking: '+('visible joints' if snap['tracked'] else 'waiting')+' Â· '+snap['state'].title())
     with st.expander('Latest rep details'):
         if snap.get('last_rep'):
-            r=snap['last_rep']; st.write(f"Rep {r['rep']} · {r['duration']}s movement · {r['range_percent']}% target range · {r['score']}/100")
-            for issue in r['issues']: st.write('• '+issue)
+            r=snap['last_rep']; st.write(f"Rep {r['rep']} Â· {r['duration']}s movement Â· {r['range_percent']}% target range Â· {r['score']}/100")
+            for issue in r['issues']: st.write('â€¢ '+issue)
         else: st.caption('Complete one repetition to see its breakdown.')
 
 
