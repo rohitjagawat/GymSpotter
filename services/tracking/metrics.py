@@ -43,7 +43,11 @@ def live_panel(context):
         st.warning('The camera stopped. Save this session and start a new workout to reconnect.'); return
     processor.pause(st.session_state.paused)
     snap=processor.snapshot(); st.session_state.last_snapshot=snap
-    if snap.get('error'): st.error(snap['error'])
+    st.caption(f"Pose model: {'ready' if snap.get('model_ready') else 'not loaded'} · Camera frames received: {snap.get('frames_received', 0)}")
+    if snap.get('error'):
+        st.error(snap['error'])
+        st.session_state.pop('voice_event',None)
+        return
     if time.monotonic()-st.session_state.last_save>2:
         persist(snap,'completed' if snap['state']=='completed' else 'active')
         st.session_state.last_save=time.monotonic()
