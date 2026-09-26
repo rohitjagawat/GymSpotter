@@ -1,10 +1,14 @@
-streamlit
-streamlit-webrtc
-mediapipe
-opencv-python-headless
-pandas
-groq
-gtts
-python-dotenv
-av
-numpy
+# Versions observed in the deployment log; one OpenCV distribution only.
+streamlit==1.64.0
+streamlit-webrtc==0.78.1
+mediapipe==1.0.1
+# MediaPipe requires this distribution. Do not add another cv2 wheel.
+opencv-contrib-python==5.0.0.93
+pandas==3.0.6
+groq==1.7.0
+gtts==2.5.4
+python-dotenv==1.2.3
+av==17.1.0
+numpy==2.5.3
+# The cloud log flags pyarrow 25.0.1 as a known segfault version.
+pyarrow==24.0.0
