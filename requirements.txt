@@ -1,0 +1,10 @@
+streamlit
+streamlit-webrtc
+mediapipe
+opencv-python-headless
+pandas
+groq
+gtts
+python-dotenv
+av
+numpy
